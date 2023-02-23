@@ -14,7 +14,7 @@ public class APIWSServer
 	public void Listed()
 	{
 		var server = new HttpListener();
-		server.Prefixes.Add("http://+:2011");
+		server.Prefixes.Add("http://+:2011/");
 		for(; ; )
 		{
 			server.Start();
@@ -37,11 +37,19 @@ public class APIWSServer
                     Console.WriteLine("j");
                     r = "jaded";
                     break;
-                case "/api/versioncheck":
+            case "/api/versioncheck":
                     r = "{\"ValidVersion\":true}";
                     break;
                 
             }
+      
+                    byte[] bytes = Encoding.UTF8.GetBytes(r);
+                    context.Response.ContentLength64 = (long)bytes.Length;
+                    Stream outputStream = context.Response.OutputStream;
+                    outputStream.Write(bytes, 0, bytes.Length);
+                    End:
+                    Thread.Sleep(50);
+                    server.Stop();
         }
 	}
 }
