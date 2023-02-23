@@ -2,13 +2,14 @@
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Threading;
 
 public class APIWSServer
 {
 	public APIWSServer()
 	{
 		Console.WriteLine("(API) ONLINE!");
-
+        new Thread(new ThreadStart(Listed)).Start();
 	}
 	public void Listed()
 	{
