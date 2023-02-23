@@ -1,8 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Net;
+using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
+using main;
+using Newtonsoft.Json;
+using RepelRec;
 
 public class APIWSServer
 {
@@ -35,15 +39,23 @@ public class APIWSServer
             }
             switch(rawurl)
             {
-                case "/j":
-                    Console.WriteLine("j");
-                    r = "jaded";
+                case "/name":
+                    r = JsonConvert.SerializeObject(new DSL()
+                    {
+                        API = "https://replrec.coffeeman240.repl.co/",
+                        Notifications = "https://replrec.coffeeman240.repl.co/ws/",
+                        Images = "https://img.rec.net/"
+                    });
                     break;
-            case "/api/versioncheck/v4":
+                case "/ws/hub/v1":
+                    r = "This is a ws!";
+                    Websock.ProcessRequest(context);
+                    break;
+                case "/api/versioncheck/v3":
                     r = "{\"ValidVersion\":true}";
                     break;
             case "/api/config/v2":
-                    r = "{\"ValidVersion\":true}";
+                    r = Config.GetConfig(false);
                     break;
 
             }
@@ -57,4 +69,58 @@ public class APIWSServer
                     server.Stop();
         }
 	}
+}
+public class DSL
+{
+    public string API { get; set; }
+    public string Notifications { get; set; }
+    public string Images { get; set; }
+}
+public class Websock
+{
+    public static async void ProcessRequest(HttpListenerContext ctx)
+    {
+        HttpListenerWebSocketContext wsCtx = await ctx.AcceptWebSocketAsync(null);
+        CancellationTokenSource src = new CancellationTokenSource();
+
+        WebSocket ws = wsCtx.WebSocket;
+
+        while (ws.State == WebSocketState.Open)
+        {
+            byte[] received = new byte[2048];
+            int offset = 0;
+
+
+            while (true)
+            {
+                try
+                {
+                    ArraySegment<byte> bytesReceived = new ArraySegment<byte>(received, offset, received.Length);
+
+                    WebSocketReceiveResult result = await ws.ReceiveAsync(bytesReceived, src.Token);
+                    offset += result.Count;
+
+                    if (result.EndOfMessage) break;
+                }
+                catch { break; };
+            }
+
+            if (offset == 0) continue;
+            string post = Encoding.ASCII.GetString(received);
+            byte[] respond = Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(new Respond()
+            {
+                Id = 12,
+                Msg = GameSessions.GetPresenceForPid(ctx.Request.Headers.Get("Authorization").Remove(0, "Bearer ".Length)) 
+            }));
+            Thread.Sleep(2000);
+            await ws.SendAsync(new ArraySegment<byte>(respond, 0, respond.Length), WebSocketMessageType.Text, true, src.Token);
+
+        }
+
+    }
+    public class Respond
+    {
+        public int Id { get; set; }
+        public object Msg { get; set; }
+    }
 }
