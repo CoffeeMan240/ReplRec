@@ -70,6 +70,15 @@ namespace main
                 Sandbox = false,
                 SupportsScreens = true,
                 SupportsVR = true,
+            }));
+            return JsonConvert.SerializeObject(new Cached()
+            {
+                AnalyticsSessionId = 0,
+                CanUseScreenMode = true,
+                Error = "",
+                FirstLoginOfTheDay = false,
+                Player = real,
+                Token = real.Id.ToString(),
             });
         }
     }
@@ -120,3 +129,4 @@ namespace main
         public ulong AnalyticsSessionId { get; set; }
         public bool CanUseScreenMode { get; set; }
     }
+}
