@@ -43,3 +43,11 @@ C:/Users/CoffeeMan/source/repos/ReplRec/obj/Debug/netcoreapp6.0/ref/main.dll
 /home/runner/ReplRec/obj/Debug/netcoreapp6.0/main.pdb
 /home/runner/ReplRec/obj/Debug/netcoreapp6.0/main.genruntimeconfig.cache
 /home/runner/ReplRec/obj/Debug/netcoreapp6.0/ref/main.dll
+C:\Users\CoffeeMan\source\repos\ReplRec\obj\Debug\netcoreapp6.0\main.csproj.AssemblyReference.cache
+C:\Users\CoffeeMan\source\repos\ReplRec\obj\Debug\netcoreapp6.0\main.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\CoffeeMan\source\repos\ReplRec\obj\Debug\netcoreapp6.0\main.AssemblyInfoInputs.cache
+C:\Users\CoffeeMan\source\repos\ReplRec\obj\Debug\netcoreapp6.0\main.AssemblyInfo.cs
+C:\Users\CoffeeMan\source\repos\ReplRec\obj\Debug\netcoreapp6.0\main.csproj.CoreCompileInputs.cache
+C:\Users\CoffeeMan\source\repos\ReplRec\obj\Debug\netcoreapp6.0\main.dll
+C:\Users\CoffeeMan\source\repos\ReplRec\obj\Debug\netcoreapp6.0\refint\main.dll
+C:\Users\CoffeeMan\source\repos\ReplRec\obj\Debug\netcoreapp6.0\main.pdb
