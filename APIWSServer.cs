@@ -21,10 +21,12 @@ public class APIWSServer
 			Console.WriteLine("(API) Listening...");
             var context = server.GetContext();
             string rawurl = context.Request.RawUrl;
+            string rawrawurl = rawurl.Split("?")[0];
+            string param = rawurl.Split("?")[1];
             string r = "[]";
             string post;
             byte[] bytepost;
-            Console.WriteLine("(API) REQUESTED " + rawurl + "!");
+            Console.WriteLine("(API) REQUESTED " + rawrawurl + "!");
             using (MemoryStream getpost = new MemoryStream())
             {
                 context.Request.InputStream.CopyTo(getpost);
@@ -37,10 +39,13 @@ public class APIWSServer
                     Console.WriteLine("j");
                     r = "jaded";
                     break;
-            case "/api/versioncheck":
+            case "/api/versioncheck/v4":
                     r = "{\"ValidVersion\":true}";
                     break;
-                
+            case "/api/config/v2":
+                    r = "{\"ValidVersion\":true}";
+                    break;
+
             }
       
                     byte[] bytes = Encoding.UTF8.GetBytes(r);
