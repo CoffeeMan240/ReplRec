@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace kutivault.API
+namespace RepelRec
 {
     internal class Config
     {
@@ -12,7 +12,7 @@ namespace kutivault.API
             
             ConfData config = new ConfData()
             {
-                MessageOfTheDay = "uwu <3",
+                MessageOfTheDay = "amogus",
                 CdnBaseUri = "http://localhost:2000/",
                 ShareBaseUrl = "http://localhost:2000/",
                 LevelProgressionMaps = new List<LevelMap>()
