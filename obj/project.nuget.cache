@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Xe+KtUfj11UE6ef+w3y/CADz3dIaMsJ0svwdFc/qW+x7eU/uM37bs/sQRX6mclr0IHoUZ9bLQHjsMc0rzMtICw==",
+  "dgSpecHash": "Ed2GjtwWzswGqKKJAbaDPF3u2yBSrYSDFCIxw/FeauBtAxlKn068OK6t7qMT+pXk+J4xuFfsHL7SP8hmCiZNoQ==",
   "success": true,
   "projectFilePath": "/home/runner/ReplRec/main.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/home/runner/.nuget/packages/newtonsoft.json/13.0.2/newtonsoft.json.13.0.2.nupkg.sha512"
+  ],
   "logs": []
 }
